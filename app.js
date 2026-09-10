@@ -46,5 +46,4 @@ const budget=document.getElementById('budget-form');if(budget){const update=()=>
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.06});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 
 if (path === 'layanan') mountServices();
-document.querySelectorAll('a[href^="/"]').forEach((link)=>{link.href=route(link.getAttribute('href'));});
-document.addEventListener('click',(event)=>{const link=event.target.closest?.('a[href^="/"]');if(link)link.href=route(link.getAttribute('href'));},true);
+document.addEventListener('click',(event)=>{const link=event.target.closest?.('a[href]');const target=link?.getAttribute('href');if(!link||!target||!target.startsWith('/')||target.startsWith('//'))return;event.preventDefault();location.assign(route(target));});
