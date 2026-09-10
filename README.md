@@ -35,6 +35,12 @@ Pemesanan, pembayaran, dan unduhan terhubung ke platform resmi. Website tidak me
 
 `npm run check` memeriksa sintaks. Pengujian browser Chrome/Playwright meliputi seluruh route, error JavaScript, gambar rusak, dialog dan Escape, filter galeri, FAQ, kalkulator, menu mobile, serta overflow pada viewport 375, 390, 768, 1024, dan 1440 px.
 
+## Deployment GitHub Pages
+
+Workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) menjalankan `npm run check` dan `npm test` pada Node.js 24 LTS, lalu deploy otomatis ke GitHub Pages setiap push ke `main`. Pull request hanya menjalankan verifikasi.
+
+Aktifkan Pages di repository GitHub dengan source **GitHub Actions**. Karena GitHub Pages hanya menyajikan file statis, endpoint server `/api/products/:id` tidak berjalan di Pages; katalog tetap menampilkan fallback dan tautan ke website produksi Siiru. Untuk harga dinamis dan proxy API, gunakan deployment Node server seperti Render, Railway, atau VPS dan jalankan `npm run start`.
+
 ## Halaman layanan yang diperluas
 
 `services.js`, `services.css`, dan `service-data.js` membentuk katalog 9 layanan dalam 5 kategori, pencarian, sorting, empty state, detail yang dapat dibagikan (`/layanan?kategori=sedekah-wakaf&detail=quran`), formulir booking, review yang dapat diedit, serta matriks fitur website/aplikasi. Estimator lama tetap tersedia.
