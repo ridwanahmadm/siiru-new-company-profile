@@ -39,7 +39,9 @@ Pemesanan, pembayaran, dan unduhan terhubung ke platform resmi. Website tidak me
 
 Workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) menjalankan `npm run check` dan `npm test` pada Node.js 24 LTS, lalu deploy otomatis ke GitHub Pages setiap push ke `main`. Pull request hanya menjalankan verifikasi.
 
-Aktifkan Pages di repository GitHub dengan source **GitHub Actions**. Karena GitHub Pages hanya menyajikan file statis, endpoint server `/api/products/:id` tidak berjalan di Pages; katalog tetap menampilkan fallback dan tautan ke website produksi Siiru. Untuk harga dinamis dan proxy API, gunakan deployment Node server seperti Render, Railway, atau VPS dan jalankan `npm run start`.
+Sebelum workflow pertama dijalankan, buka repository GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**. Repository harus memiliki Pages site terlebih dahulu; `configure-pages` tidak dapat membuatnya memakai `GITHUB_TOKEN` biasa. Setelah source dipilih, push ke `main` akan menjalankan deployment otomatis.
+
+Karena GitHub Pages hanya menyajikan file statis, endpoint server `/api/products/:id` tidak berjalan di Pages; katalog tetap menampilkan fallback dan tautan ke website produksi Siiru. Untuk harga dinamis dan proxy API, gunakan deployment Node server seperti Render, Railway, atau VPS dan jalankan `npm run start`.
 
 ## Halaman layanan yang diperluas
 
